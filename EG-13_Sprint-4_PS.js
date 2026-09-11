@@ -355,3 +355,75 @@ const searchRange = function (nums, target) {
 //   "08. Find First and Last Position:",
 //   searchRange([5, 7, 7, 8, 8, 10], 8)
 // );
+
+
+
+
+
+// 09. Permutation in String
+
+
+const checkInclusion = function (s1, s2) {
+  if (s1.length > s2.length) {
+    return false;
+  }
+
+  const count1 = new Array(26).fill(0);
+  const count2 = new Array(26).fill(0);
+
+  for (const char of s1) {
+    count1[char.charCodeAt(0) - 97]++;
+  }
+
+  for (let i = 0; i < s1.length; i++) {
+    count2[s2.charCodeAt(i) - 97]++;
+  }
+
+  let matches = 0;
+
+  for (let i = 0; i < 26; i++) {
+    if (count1[i] === count2[i]) {
+      matches++;
+    }
+  }
+
+  for (let right = s1.length; right < s2.length; right++) {
+    if (matches === 26) {
+      return true;
+    }
+
+    const addIndex = s2.charCodeAt(right) - 97;
+    const removeIndex =
+      s2.charCodeAt(right - s1.length) - 97;
+
+    count2[addIndex]++;
+
+    if (count2[addIndex] === count1[addIndex]) {
+      matches++;
+    } else if (
+      count2[addIndex] === count1[addIndex] + 1
+    ) {
+      matches--;
+    }
+
+    count2[removeIndex]--;
+
+    if (count2[removeIndex] === count1[removeIndex]) {
+      matches++;
+    } else if (
+      count2[removeIndex] === count1[removeIndex] - 1
+    ) {
+      matches--;
+    }
+  }
+
+  return matches === 26;
+};
+
+
+
+// console.log(
+//   "09. Permutation in String:",
+//   checkInclusion("ab", "eidbaooo")
+// );
+

@@ -77,3 +77,28 @@ const wordPattern = function (pattern, s) {
 
 
 
+
+// 03. Find the Difference
+
+
+const findTheDifference = function (s, t) {
+  let result = 0;
+
+  for (const char of s) {
+    result ^= char.charCodeAt(0);
+  }
+
+  for (const char of t) {
+    result ^= char.charCodeAt(0);
+  }
+
+  return String.fromCharCode(result);
+};
+
+
+
+// console.log(
+//   "03. Find the Difference:",
+//   findTheDifference("abcd", "abcde")
+// );
+

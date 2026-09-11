@@ -102,3 +102,54 @@ const findTheDifference = function (s, t) {
 //   findTheDifference("abcd", "abcde")
 // );
 
+
+
+// 04. Reverse Linked List
+
+
+const ListNode = function (val, next = null) {
+  this.val = val;
+  this.next = next;
+};
+
+const reverseList = function (head) {
+  let previous = null;
+  let current = head;
+
+  while (current !== null) {
+    const nextNode = current.next;
+
+    current.next = previous;
+    previous = current;
+    current = nextNode;
+  }
+
+  return previous;
+};
+
+
+// Test
+const list04 = new ListNode(
+  1,
+  new ListNode(
+    2,
+    new ListNode(
+      3,
+      new ListNode(
+        4,
+        new ListNode(5)
+      )
+    )
+  )
+);
+
+let reversedList04 = reverseList(list04);
+
+const output04 = [];
+
+while (reversedList04 !== null) {
+  output04.push(reversedList04.val);
+  reversedList04 = reversedList04.next;
+}
+
+// console.log("04. Reverse Linked List:", output04);

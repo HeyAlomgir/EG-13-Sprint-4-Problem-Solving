@@ -128,29 +128,29 @@ const reverseList = function (head) {
 };
 
 
-// Test
-const list04 = new ListNode(
-    1,
-    new ListNode(
-        2,
-        new ListNode(
-            3,
-            new ListNode(
-                4,
-                new ListNode(5)
-            )
-        )
-    )
-);
+// // Test
+// const list04 = new ListNode(
+//     1,
+//     new ListNode(
+//         2,
+//         new ListNode(
+//             3,
+//             new ListNode(
+//                 4,
+//                 new ListNode(5)
+//             )
+//         )
+//     )
+// );
 
-let reversedList04 = reverseList(list04);
+// let reversedList04 = reverseList(list04);
 
-const output04 = [];
+// const output04 = [];
 
-while (reversedList04 !== null) {
-    output04.push(reversedList04.val);
-    reversedList04 = reversedList04.next;
-}
+// while (reversedList04 !== null) {
+//     output04.push(reversedList04.val);
+//     reversedList04 = reversedList04.next;
+// }
 
 // console.log("04. Reverse Linked List:", output04);
 
@@ -177,29 +177,29 @@ const middleNode = function (head) {
 };
 
 
-// Test
-const list05 = new ListNode(
-    1,
-    new ListNode(
-        2,
-        new ListNode(
-            3,
-            new ListNode(
-                4,
-                new ListNode(5)
-            )
-        )
-    )
-);
+// // Test
+// const list05 = new ListNode(
+//     1,
+//     new ListNode(
+//         2,
+//         new ListNode(
+//             3,
+//             new ListNode(
+//                 4,
+//                 new ListNode(5)
+//             )
+//         )
+//     )
+// );
 
-let middle05 = middleNode(list05);
+// let middle05 = middleNode(list05);
 
-const output05 = [];
+// const output05 = [];
 
-while (middle05 !== null) {
-    output05.push(middle05.val);
-    middle05 = middle05.next;
-}
+// while (middle05 !== null) {
+//     output05.push(middle05.val);
+//     middle05 = middle05.next;
+// }
 
 // console.log("05. Middle of the Linked List:", output05);
 
@@ -212,23 +212,23 @@ while (middle05 !== null) {
 
 
 const productExceptSelf = function (nums) {
-  const result = new Array(nums.length).fill(1);
+    const result = new Array(nums.length).fill(1);
 
-  let prefix = 1;
+    let prefix = 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    result[i] = prefix;
-    prefix *= nums[i];
-  }
+    for (let i = 0; i < nums.length; i++) {
+        result[i] = prefix;
+        prefix *= nums[i];
+    }
 
-  let suffix = 1;
+    let suffix = 1;
 
-  for (let i = nums.length - 1; i >= 0; i--) {
-    result[i] *= suffix;
-    suffix *= nums[i];
-  }
+    for (let i = nums.length - 1; i >= 0; i--) {
+        result[i] *= suffix;
+        suffix *= nums[i];
+    }
 
-  return result;
+    return result;
 };
 
 
@@ -239,3 +239,59 @@ const productExceptSelf = function (nums) {
 // );
 
 
+
+
+
+
+// 07. Remove Nth Node From End of List
+
+
+const removeNthFromEnd = function (head, n) {
+    const dummy = new ListNode(0, head);
+
+    let slow = dummy;
+    let fast = dummy;
+
+    for (let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+
+    while (fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    slow.next = slow.next.next;
+
+    return dummy.next;
+};
+
+
+// // Test
+// const list07 = new ListNode(
+//     1,
+//     new ListNode(
+//         2,
+//         new ListNode(
+//             3,
+//             new ListNode(
+//                 4,
+//                 new ListNode(5)
+//             )
+//         )
+//     )
+// );
+
+// let result07 = removeNthFromEnd(list07, 2);
+
+// const output07 = [];
+
+// while (result07 !== null) {
+//     output07.push(result07.val);
+//     result07 = result07.next;
+// }
+
+// console.log(
+//     "07. Remove Nth Node From End of List:",
+//     output07
+// );

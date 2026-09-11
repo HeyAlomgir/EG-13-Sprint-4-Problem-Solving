@@ -295,3 +295,63 @@ const removeNthFromEnd = function (head, n) {
 //     "07. Remove Nth Node From End of List:",
 //     output07
 // );
+
+
+
+
+
+// 08. Find First and Last Position
+
+
+const searchRange = function (nums, target) {
+  const findFirst = function () {
+    let left = 0;
+    let right = nums.length - 1;
+    let result = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+
+      if (nums[mid] === target) {
+        result = mid;
+        right = mid - 1;
+      } else if (nums[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+
+    return result;
+  };
+
+  const findLast = function () {
+    let left = 0;
+    let right = nums.length - 1;
+    let result = -1;
+
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+
+      if (nums[mid] === target) {
+        result = mid;
+        left = mid + 1;
+      } else if (nums[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+
+    return result;
+  };
+
+  return [findFirst(), findLast()];
+};
+
+
+
+// console.log(
+//   "08. Find First and Last Position:",
+//   searchRange([5, 7, 7, 8, 8, 10], 8)
+// );

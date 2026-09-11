@@ -201,5 +201,41 @@ while (middle05 !== null) {
     middle05 = middle05.next;
 }
 
-console.log("05. Middle of the Linked List:", output05);
+// console.log("05. Middle of the Linked List:", output05);
+
+
+
+
+
+
+// 06. Product of Array Except Self
+
+
+const productExceptSelf = function (nums) {
+  const result = new Array(nums.length).fill(1);
+
+  let prefix = 1;
+
+  for (let i = 0; i < nums.length; i++) {
+    result[i] = prefix;
+    prefix *= nums[i];
+  }
+
+  let suffix = 1;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result[i] *= suffix;
+    suffix *= nums[i];
+  }
+
+  return result;
+};
+
+
+
+// console.log(
+//   "06. Product of Array Except Self:",
+//   productExceptSelf([1, 2, 3, 4])
+// );
+
 

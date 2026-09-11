@@ -3,29 +3,29 @@
 
 
 const isIsomorphic = function (s, t) {
-  if (s.length !== t.length) {
-    return false;
-  }
-
-  const mapST = new Map();
-  const mapTS = new Map();
-
-  for (let i = 0; i < s.length; i++) {
-    const charS = s[i];
-    const charT = t[i];
-
-    if (
-      (mapST.has(charS) && mapST.get(charS) !== charT) ||
-      (mapTS.has(charT) && mapTS.get(charT) !== charS)
-    ) {
-      return false;
+    if (s.length !== t.length) {
+        return false;
     }
 
-    mapST.set(charS, charT);
-    mapTS.set(charT, charS);
-  }
+    const mapST = new Map();
+    const mapTS = new Map();
 
-  return true;
+    for (let i = 0; i < s.length; i++) {
+        const charS = s[i];
+        const charT = t[i];
+
+        if (
+            (mapST.has(charS) && mapST.get(charS) !== charT) ||
+            (mapTS.has(charT) && mapTS.get(charT) !== charS)
+        ) {
+            return false;
+        }
+
+        mapST.set(charS, charT);
+        mapTS.set(charT, charS);
+    }
+
+    return true;
 };
 
 
@@ -42,31 +42,31 @@ const isIsomorphic = function (s, t) {
 
 
 const wordPattern = function (pattern, s) {
-  const words = s.split(" ");
+    const words = s.split(" ");
 
-  if (pattern.length !== words.length) {
-    return false;
-  }
-
-  const patternToWord = new Map();
-  const wordToPattern = new Map();
-
-  for (let i = 0; i < pattern.length; i++) {
-    const char = pattern[i];
-    const word = words[i];
-
-    if (
-      (patternToWord.has(char) && patternToWord.get(char) !== word) ||
-      (wordToPattern.has(word) && wordToPattern.get(word) !== char)
-    ) {
-      return false;
+    if (pattern.length !== words.length) {
+        return false;
     }
 
-    patternToWord.set(char, word);
-    wordToPattern.set(word, char);
-  }
+    const patternToWord = new Map();
+    const wordToPattern = new Map();
 
-  return true;
+    for (let i = 0; i < pattern.length; i++) {
+        const char = pattern[i];
+        const word = words[i];
+
+        if (
+            (patternToWord.has(char) && patternToWord.get(char) !== word) ||
+            (wordToPattern.has(word) && wordToPattern.get(word) !== char)
+        ) {
+            return false;
+        }
+
+        patternToWord.set(char, word);
+        wordToPattern.set(word, char);
+    }
+
+    return true;
 };
 
 
@@ -82,17 +82,17 @@ const wordPattern = function (pattern, s) {
 
 
 const findTheDifference = function (s, t) {
-  let result = 0;
+    let result = 0;
 
-  for (const char of s) {
-    result ^= char.charCodeAt(0);
-  }
+    for (const char of s) {
+        result ^= char.charCodeAt(0);
+    }
 
-  for (const char of t) {
-    result ^= char.charCodeAt(0);
-  }
+    for (const char of t) {
+        result ^= char.charCodeAt(0);
+    }
 
-  return String.fromCharCode(result);
+    return String.fromCharCode(result);
 };
 
 
@@ -108,39 +108,39 @@ const findTheDifference = function (s, t) {
 
 
 const ListNode = function (val, next = null) {
-  this.val = val;
-  this.next = next;
+    this.val = val;
+    this.next = next;
 };
 
 const reverseList = function (head) {
-  let previous = null;
-  let current = head;
+    let previous = null;
+    let current = head;
 
-  while (current !== null) {
-    const nextNode = current.next;
+    while (current !== null) {
+        const nextNode = current.next;
 
-    current.next = previous;
-    previous = current;
-    current = nextNode;
-  }
+        current.next = previous;
+        previous = current;
+        current = nextNode;
+    }
 
-  return previous;
+    return previous;
 };
 
 
 // Test
 const list04 = new ListNode(
-  1,
-  new ListNode(
-    2,
+    1,
     new ListNode(
-      3,
-      new ListNode(
-        4,
-        new ListNode(5)
-      )
+        2,
+        new ListNode(
+            3,
+            new ListNode(
+                4,
+                new ListNode(5)
+            )
+        )
     )
-  )
 );
 
 let reversedList04 = reverseList(list04);
@@ -148,8 +148,58 @@ let reversedList04 = reverseList(list04);
 const output04 = [];
 
 while (reversedList04 !== null) {
-  output04.push(reversedList04.val);
-  reversedList04 = reversedList04.next;
+    output04.push(reversedList04.val);
+    reversedList04 = reversedList04.next;
 }
 
 // console.log("04. Reverse Linked List:", output04);
+
+
+
+
+
+
+
+
+// 05. Middle of Linked List
+
+
+const middleNode = function (head) {
+    let slow = head;
+    let fast = head;
+
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow;
+};
+
+
+// Test
+const list05 = new ListNode(
+    1,
+    new ListNode(
+        2,
+        new ListNode(
+            3,
+            new ListNode(
+                4,
+                new ListNode(5)
+            )
+        )
+    )
+);
+
+let middle05 = middleNode(list05);
+
+const output05 = [];
+
+while (middle05 !== null) {
+    output05.push(middle05.val);
+    middle05 = middle05.next;
+}
+
+console.log("05. Middle of the Linked List:", output05);
+

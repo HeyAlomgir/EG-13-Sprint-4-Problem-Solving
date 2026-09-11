@@ -427,3 +427,64 @@ const checkInclusion = function (s1, s2) {
 //   checkInclusion("ab", "eidbaooo")
 // );
 
+
+
+
+
+// 10. Find All Anagrams in a String
+
+
+const findAnagrams = function (s, p) {
+  const result = [];
+
+  if (p.length > s.length) {
+    return result;
+  }
+
+  const countP = new Array(26).fill(0);
+  const countWindow = new Array(26).fill(0);
+
+  for (const char of p) {
+    countP[char.charCodeAt(0) - 97]++;
+  }
+
+  for (let i = 0; i < p.length; i++) {
+    countWindow[s.charCodeAt(i) - 97]++;
+  }
+
+  const isSame = function () {
+    for (let i = 0; i < 26; i++) {
+      if (countP[i] !== countWindow[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  if (isSame()) {
+    result.push(0);
+  }
+
+  for (let right = p.length; right < s.length; right++) {
+    const addIndex = s.charCodeAt(right) - 97;
+    const removeIndex =
+      s.charCodeAt(right - p.length) - 97;
+
+    countWindow[addIndex]++;
+    countWindow[removeIndex]--;
+
+    if (isSame()) {
+      result.push(right - p.length + 1);
+    }
+  }
+
+  return result;
+};
+
+
+
+// console.log(
+//   "10. Find All Anagrams in a String:",
+//   findAnagrams("cbaebabacd", "abc")
+// );
